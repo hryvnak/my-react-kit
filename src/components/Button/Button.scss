@@ -1,0 +1,202 @@
+@import 'src/mixins.scss';
+
+.button{
+	display: inline-block;
+	width: auto;
+	height: auto;
+	line-height: $LineHeight;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	outline: 0px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	cursor: pointer;
+	@include box-sizing();
+	@include border-radius();
+	@include font($weight: $FontMedium);
+	@include transition();
+	@include appearance();
+	@include position();
+	&.text{
+		background: none;
+		&:disabled{
+			color: $PaletteGreyLight4 !important;
+			cursor: default;
+		}
+		&.primary{
+			color: $PalettePrimaryMain;
+			&:not(:disabled):hover{background-color: rgba($PalettePrimaryMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PalettePrimaryMain, 25%);}
+		}
+		&.secondary{
+			color: $PaletteSecondaryMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteSecondaryMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteSecondaryMain, 25%);}
+		}
+		&.error{
+			color: $PaletteErrorMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteErrorMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteErrorMain, 25%);}
+		}
+		&.warning{
+			color: $PaletteWarningMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteWarningMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteWarningMain, 25%);}
+		}
+		&.info{
+			color: $PaletteInfoMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteInfoMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteInfoMain, 25%);}
+		}
+		&.success{
+			color: $PaletteSuccessMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteSuccessMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteSuccessMain, 25%);}
+		}
+	}
+	&.contained{
+		color: $PaletteWhite;
+		@include box-shadow(1px, 1px, 2px, 1px, rgba($PalettePrimaryMain, 30%));
+		&:disabled{
+			background-color: $PaletteGreyLight2 !important;
+			color: $PaletteGreyLight4;
+			cursor: default;
+			@include box-shadow();
+		}
+		&.primary{
+			background-color: $PalettePrimaryMain;
+			&:not(:disabled):hover{background-color: $PalettePrimaryDark; @include box-shadow(1px, 1px, 5px, 2px, rgba($PalettePrimaryMain, 40%));}
+			&:not(:disabled):active{background-color: $PalettePrimaryDark; @include box-shadow(1px, 1px, 5px, 3px, rgba($PalettePrimaryMain, 50%));}
+		}
+		&.secondary{
+			background-color: $PaletteSecondaryMain;
+			&:not(:disabled):hover{background-color: $PaletteSecondaryDark; @include box-shadow(1px, 1px, 5px, 2px, rgba($PaletteSecondaryMain, 40%));}
+			&:not(:disabled):active{background-color: $PaletteSecondaryDark; @include box-shadow(1px, 1px, 5px, 3px, rgba($PaletteSecondaryMain, 50%));}
+		}
+		&.error{
+			background-color: $PaletteErrorMain;
+			&:not(:disabled):hover{background-color: $PaletteErrorDark; @include box-shadow(1px, 1px, 5px, 2px, rgba($PaletteErrorMain, 40%));}
+			&:not(:disabled):active{background-color: $PaletteErrorDark; @include box-shadow(1px, 1px, 5px, 3px, rgba($PaletteErrorMain, 50%));}
+		}
+		&.warning{
+			background-color: $PaletteWarningMain;
+			&:not(:disabled):hover{background-color: $PaletteWarningDark; @include box-shadow(1px, 1px, 5px, 2px, rgba($PaletteWarningMain, 40%));}
+			&:not(:disabled):active{background-color: $PaletteWarningDark; @include box-shadow(1px, 1px, 5px, 3px, rgba($PaletteWarningMain, 50%));}
+		}
+		&.info{
+			background-color: $PaletteInfoMain;
+			&:not(:disabled):hover{background-color: $PaletteInfoDark; @include box-shadow(1px, 1px, 5px, 2px, rgba($PaletteInfoMain, 40%));}
+			&:not(:disabled):active{background-color: $PaletteInfoDark; @include box-shadow(1px, 1px, 5px, 3px, rgba($PaletteInfoMain, 50%));}
+		}
+		&.success{
+			background-color: $PaletteSuccessMain;
+			&:not(:disabled):hover{background-color: $PaletteSuccessDark; @include box-shadow(1px, 1px, 5px, 2px, rgba($PaletteSuccessMain, 40%));}
+			&:not(:disabled):active{background-color: $PaletteSuccessDark; @include box-shadow(1px, 1px, 5px, 3px, rgba($PaletteSuccessMain, 50%));}
+		}
+	}
+	&.outlined{
+		background: none;
+		&:disabled{
+			border-color: $PaletteGreyLight4 !important;
+			color: $PaletteGreyLight4 !important;
+			cursor: default;
+		}
+		&.primary{
+			border-color: $PalettePrimaryMain;
+			color: $PalettePrimaryMain;
+			&:not(:disabled):hover{background-color: rgba($PalettePrimaryMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PalettePrimaryMain, 25%);}
+		}
+		&.secondary{
+			border-color: $PaletteSecondaryMain;
+			color: $PaletteSecondaryMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteSecondaryMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteSecondaryMain, 25%);}
+		}
+		&.error{
+			border-color: $PaletteErrorMain;
+			color: $PaletteErrorMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteErrorMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteErrorMain, 25%);}
+		}
+		&.warning{
+			border-color: $PaletteWarningMain;
+			color: $PaletteWarningMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteWarningMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteWarningMain, 25%);}
+		}
+		&.info{
+			border-color: $PaletteInfoMain;
+			color: $PaletteInfoMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteInfoMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteInfoMain, 25%);}
+		}
+		&.success{
+			border-color: $PaletteSuccessMain;
+			color: $PaletteSuccessMain;
+			&:not(:disabled):hover{background-color: rgba($PaletteSuccessMain, 15%);}
+			&:not(:disabled):active{background-color: rgba($PaletteSuccessMain, 25%);}
+		}
+	}
+	&.small{
+		padding: 5px 10px;
+		@include calc(font-size, #{$FontSize - 1px});
+	}
+	&.medium{
+		padding: 7px 15px;
+		font-size: $FontSize;
+	}
+	&.large{
+		padding: 10px 15px;
+		@include calc(font-size, #{$FontSize + 1px});
+	}
+	&>.icon{
+		vertical-align: -2px;
+		&.start{
+			margin-right: 5px;
+		}
+		&.end{
+			margin-left: 5px;
+		}
+		&:before{
+			font-size: 18px;
+		}
+	}
+	&>input[type="file"] {
+    height: 100%;
+    min-width: 100%;
+		font-size: .1px;
+		cursor: pointer;
+		@include position(absolute, $left: 0px, $top: 0px);
+		@include opacity(0);
+	}
+}
+.button+.files{
+	width: auto;
+	height: auto;
+	background: none;
+	@include flexbox(flex, flex-start, flex-start, flex-start, wrap column);
+	@include box-sizing();
+	&>.filename{
+		display: block;
+		padding: 2px;
+		text-align: left;
+		font-size: 12px;
+		color: $PaletteGreyDark2;
+		cursor: pointer;
+		@include box-sizing();
+		@include position();
+		@include transition();
+		&:after{
+			content: '\e904';
+			font-family: $FontIcon;
+			font-size: 12px;
+			@include position(absolute, $right: -10px);
+			@include calc(top, #{'100%/2 - 6px'});
+		}
+		&:hover:after{
+			color: $PaletteErrorMain;
+		}
+	}
+}
