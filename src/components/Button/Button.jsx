@@ -1,6 +1,7 @@
+import React from 'react';
 import cn from 'classnames';
 import './Button.scss';
-import { has } from 'lodash';
+import PropTypes from 'prop-types';
 
 const Button = (props) => {
 	const { 
@@ -10,54 +11,69 @@ const Button = (props) => {
 		size = "medium", 
 		text, 
 		onClick,
+		iconButton,
 		startIcon,
 		endIcon,
-		...atributs 
+		disabled, 
+		active,
+		...attrs 
 	} = props;
 
-	const classeNames = [ variant, color, size ];
+	const buttonClassNames = [ variant, color, size ];
 
-	let buttonClass = cn("button", classeNames);
+	const buttonClass = cn(
+		"button", 
+		{ "icon-button": iconButton },
+		{ [iconButton]: iconButton }, 
+		buttonClassNames, 
+		{ active: active }, 
+		{ disabled: disabled && attrs.href }
+	);
+	const startIconClass = cn("icon-start", startIcon);
+	const endIconClass = cn("icon-end", endIcon);
 
-	if (has(atributs, 'href')) {
-		return (
-		<a onClick={ onClick } className={ buttonClass } { ...atributs }>
-			{ text }
-		</a>
-		)
-	}
-	else if (has(atributs, 'component')) {
-		if (atributs.component === "label") {
-			return (
-				<label onClick={ onClick } className={ buttonClass } { ...atributs }>
-					{ text }
-					{ children }
-				</label>
-			)
+	const defineTag = () => {
+		if (attrs.href) {
+			return "a";
 		}
+		else if (attrs.component === "label") {
+			return "label";
+		}
+		return "button";
 	}
-	else if (startIcon) {
+	
+	const render = () => {
+		const Tag = defineTag();
 		return (
-			<button onClick={ onClick } className={ buttonClass} { ...atributs }>
-				<span className={ cn("icon", "start", startIcon) }></span>
+			<Tag 
+				{ ...attrs} 
+				onClick={ onClick } 
+				className={ buttonClass } 
+				disabled={ disabled } 
+				tabIndex={ (attrs.href && disabled) ? -1 : null }
+			>
+				{ startIcon ? (<span className={ startIconClass }></span>) : null }
 				{ text }
-			</button>
+				{ endIcon ? (<span className={ endIconClass }></span>) : null }
+				{ (attrs.component === "label") ? children : null }
+			</Tag>
 		)
 	}
-	else if (endIcon) {
-		return (
-			<button onClick={ onClick } className={ buttonClass} { ...atributs }>
-				{ text }
-				<span className={ cn("icon", "end", endIcon) }></span>
-			</button>
-		)
-	}
-	else {
-		return (
-		<button onClick={ onClick } className={ buttonClass } { ...atributs }>
-			{ text }
-		</button>
-		)  
-	}
+
+	return render();
 }
+
+Button.propTypes = {
+	children: PropTypes.node,
+	variant: PropTypes.string, 
+	color: PropTypes.string, 
+	size: PropTypes.string, 
+	text: PropTypes.string, 
+	onClick: PropTypes.func,
+	startIcon: PropTypes.string,
+	endIcon: PropTypes.string,
+	disabled: PropTypes.bool, 
+	active: PropTypes.bool, 
+}
+
 export default Button;

@@ -18,11 +18,17 @@
 	@include transition();
 	@include appearance();
 	@include position();
+	&:disabled{
+		cursor: default;
+	}
+	&.disabled{
+		pointer-events: none;
+	}
 	&.text{
 		background: none;
-		&:disabled{
-			color: $PaletteGreyLight4 !important;
-			cursor: default;
+		&:disabled,
+		&.disabled{
+			color: $PaletteGreyLight4 !important;	
 		}
 		&.primary{
 			color: $PalettePrimaryMain;
@@ -58,10 +64,10 @@
 	&.contained{
 		color: $PaletteWhite;
 		@include box-shadow(1px, 1px, 2px, 1px, rgba($PalettePrimaryMain, 30%));
-		&:disabled{
+		&:disabled,
+		&.disabled{
 			background-color: $PaletteGreyLight2 !important;
 			color: $PaletteGreyLight4;
-			cursor: default;
 			@include box-shadow();
 		}
 		&.primary{
@@ -97,10 +103,10 @@
 	}
 	&.outlined{
 		background: none;
-		&:disabled{
+		&:disabled,
+		&.disabled{
 			border-color: $PaletteGreyLight4 !important;
 			color: $PaletteGreyLight4 !important;
-			cursor: default;
 		}
 		&.primary{
 			border-color: $PalettePrimaryMain;
@@ -140,28 +146,50 @@
 		}
 	}
 	&.small{
+		min-height: 32px;
 		padding: 5px 10px;
 		@include calc(font-size, #{$FontSize - 1px});
+		&.icon-button{
+			width: 32px;
+			height: 32px;
+			line-height: 32px;
+			padding: 0px;
+		}
 	}
 	&.medium{
+		min-height: 38px;
 		padding: 7px 15px;
 		font-size: $FontSize;
+		&.icon-button{
+			width: 38px;
+			height: 38px;
+			line-height: 38px;
+			padding: 0px;
+		}
 	}
 	&.large{
+		min-height: 44px;
 		padding: 10px 15px;
 		@include calc(font-size, #{$FontSize + 1px});
+		&.icon-button{
+			width: 44px;
+			height: 44px;
+			line-height: 44px;
+			padding: 0px;
+		}
 	}
-	&>.icon{
+	&>.icon-start,
+	&>.icon-end{
 		vertical-align: -2px;
-		&.start{
-			margin-right: 5px;
-		}
-		&.end{
-			margin-left: 5px;
-		}
 		&:before{
 			font-size: 18px;
 		}
+	}
+	&>.icon-start{
+		margin-right: 5px;
+	}
+	&>.icon-end{
+		margin-left: 5px;
 	}
 	&>input[type="file"] {
     height: 100%;
@@ -170,6 +198,12 @@
 		cursor: pointer;
 		@include position(absolute, $left: 0px, $top: 0px);
 		@include opacity(0);
+	}
+	&.icon-button{
+		@include border-radius(50%);
+		&:before{
+			font-size: 18px;
+		}
 	}
 }
 .button+.files{
