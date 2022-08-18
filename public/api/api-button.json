@@ -1,0 +1,58 @@
+{
+	"children": { 
+		"type": { "name": "node" },
+		"description": "Контент компонента" 
+	},
+  "color": {
+    "type": {
+      "name": "union",
+      "description": "'primary'<br>'secondary'<br>'success'<br>'error'<br>'info'<br>'warning'"
+    },
+    "default": "'primary'",
+		"description": "Колір компонента"
+  },
+  "component": { 
+		"type": { "name": "elementType" },
+		"description": "Компонент, що використовується в якості кореневого елемента"
+	},
+  "disabled": { 
+		"type": { "name": "bool" },
+		"description": "Якщо <code>true</code> - компонент недоступний"
+	},
+	"iconButton": {
+		"type": {"name": "string"},
+		"description": "Кнопка-іконка, в якості аргумента приймає назву іконки (з іконочного шрифту)"
+	},
+  "endIcon": { 
+		"type": { "name": "node" },
+		"description": "Іконка в кінці кнопки, в якості аргумента приймає назву іконки (з іконочного шрифту)"
+	},
+	"onClick": {
+		"type": {"nmae": "func"},
+		"description": "Обробник події"
+	},
+  "size": {
+    "type": {
+      "name": "union",
+      "description": "'small'<br>'medium'<br>'large'"
+    },
+    "default": "'medium'",
+		"description": "Розмір кнопки"
+  },
+  "startIcon": { 
+		"type": { "name": "node" },
+		"description": "Іконка на початку кнопки, в якості аргумента приймає назву іконки (з іконочного шрифту)" 
+	},
+	"text": { 
+		"type": {"name": "string"},
+		"description": "Текст кнопки"
+	},
+  "variant": {
+    "type": {
+      "name": "union",
+      "description": "'contained'<br>'outlined'<br>'text'"
+    },
+    "default": "'text'",
+		"description": "Варіант дизайну кнопки"
+  }
+}

@@ -4,18 +4,18 @@ import './Button.scss';
 import PropTypes from 'prop-types';
 
 const Button = (props) => {
-	const { 
+	const {
 		children,
-		variant = "contained", 
-		color = "primary", 
-		size = "medium", 
-		text, 
-		onClick,
-		iconButton,
-		startIcon,
+		color = "primary",
+		component,
+		disabled,
 		endIcon,
-		disabled, 
-		active,
+		iconButton,
+		onClick,
+		size = "medium",
+		startIcon,
+		text,
+		variant = "contained", 
 		...attrs 
 	} = props;
 
@@ -26,7 +26,6 @@ const Button = (props) => {
 		{ "icon-button": iconButton },
 		{ [iconButton]: iconButton }, 
 		buttonClassNames, 
-		{ active: active }, 
 		{ disabled: disabled && attrs.href }
 	);
 	const startIconClass = cn("icon-start", startIcon);
@@ -36,7 +35,7 @@ const Button = (props) => {
 		if (attrs.href) {
 			return "a";
 		}
-		else if (attrs.component === "label") {
+		else if (component === "label") {
 			return "label";
 		}
 		return "button";
@@ -55,7 +54,7 @@ const Button = (props) => {
 				{ startIcon ? (<span className={ startIconClass }></span>) : null }
 				{ text }
 				{ endIcon ? (<span className={ endIconClass }></span>) : null }
-				{ (attrs.component === "label") ? children : null }
+				{ (component === "label") ? children : null }
 			</Tag>
 		)
 	}
@@ -65,15 +64,16 @@ const Button = (props) => {
 
 Button.propTypes = {
 	children: PropTypes.node,
-	variant: PropTypes.string, 
-	color: PropTypes.string, 
-	size: PropTypes.string, 
-	text: PropTypes.string, 
-	onClick: PropTypes.func,
-	startIcon: PropTypes.string,
-	endIcon: PropTypes.string,
+	color: PropTypes.string,
+	component: PropTypes.string,
 	disabled: PropTypes.bool, 
-	active: PropTypes.bool, 
+	endIcon: PropTypes.string,
+	iconButton: PropTypes.string,
+	onClick: PropTypes.func,
+	size: PropTypes.string, 
+	startIcon: PropTypes.string,
+	text: PropTypes.string, 
+	variant: PropTypes.string, 
 }
 
 export default Button;
